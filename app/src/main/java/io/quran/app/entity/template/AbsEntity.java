@@ -1,13 +1,10 @@
 package io.quran.app.entity.template;
 
 
-import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
+import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
@@ -28,5 +25,7 @@ public abstract class AbsEntity implements Serializable {
     @UpdateTimestamp
     @Column(name = "updated_at")
     private Timestamp updatedAt;//OBJECT O'ZGARGANDA ISHLAYDI
+
+    private Boolean deleted = false;
 
 }

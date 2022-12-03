@@ -1,12 +1,11 @@
 package io.quran.app.entity;
 
 import io.quran.app.entity.template.AbsEntity;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Getter
 @Setter
@@ -14,6 +13,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @Table(name = "users")
+@Where(clause = "deleted=false")
+@SQLDelete(sql = "update users set deleted=true where id =?")
 public class User extends AbsEntity {
 
     private String firstname;
