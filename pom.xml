@@ -8,6 +8,7 @@
         <version>2.7.5</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
+
     <groupId>io.quran</groupId>
     <artifactId>QuranUz</artifactId>
     <version>0.0.1-SNAPSHOT</version>
@@ -22,6 +23,11 @@
     </modules>
 
     <dependencies>
+        <dependency>
+            <groupId>com.vladmihalcea</groupId>
+            <artifactId>hibernate-types-52</artifactId>
+            <version>2.20.0</version>
+        </dependency>
 <!--        Spring Boot Starter-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -61,6 +67,11 @@
         <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct</artifactId>
+            <version>1.5.3.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-processor</artifactId>
             <version>1.5.3.Final</version>
         </dependency>
     </dependencies>
