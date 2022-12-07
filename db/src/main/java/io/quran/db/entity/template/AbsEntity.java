@@ -1,4 +1,4 @@
-package io.quran.app.entity.template;
+package io.quran.db.entity.template;
 
 
 import lombok.*;

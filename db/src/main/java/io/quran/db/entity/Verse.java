@@ -1,6 +1,6 @@
-package io.quran.app.entity;
+package io.quran.db.entity;
 
-import io.quran.app.entity.template.AbsEntity;
+import io.quran.db.entity.template.AbsEntity;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.ResultCheckStyle;

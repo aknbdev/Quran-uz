@@ -1,10 +1,11 @@
-package io.quran.app.service;
+package io.quran.app.service.impl;
 
-import io.quran.app.repository.UserRepository;
+import io.quran.db.repository.UserRepository;
+import io.quran.app.service.UserService;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
 

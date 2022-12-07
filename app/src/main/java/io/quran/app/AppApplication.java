@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication(scanBasePackages = {Project.BASE_PACKAGE})
 @EnableJpaRepositories(basePackages = {Project.REPOSITORY_PACKAGE})
-//@EnableConfigurationProperties(RsaKeyProperties.class)
 @EntityScan(basePackages = {Project.ENTITY_PACKAGE})
 @EnableTransactionManagement
 @EnableJpaAuditing

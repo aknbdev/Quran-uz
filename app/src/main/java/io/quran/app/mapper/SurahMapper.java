@@ -1,6 +1,6 @@
 package io.quran.app.mapper;
 
-import io.quran.app.entity.Surah;
+import io.quran.db.entity.Surah;
 import io.quran.app.payload.SurahDto;
 import org.mapstruct.Mapper;
 import org.springframework.stereotype.Component;

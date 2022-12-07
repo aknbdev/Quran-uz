@@ -1,6 +1,6 @@
 package io.quran.app.mapper;
 
-import io.quran.app.entity.User;
+import io.quran.db.entity.User;
 import io.quran.app.payload.UserDto;
 import org.mapstruct.Mapper;
 

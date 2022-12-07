@@ -1,6 +1,6 @@
-package io.quran.app.repository;
+package io.quran.db.repository;
 
-import io.quran.app.entity.User;
+import io.quran.db.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

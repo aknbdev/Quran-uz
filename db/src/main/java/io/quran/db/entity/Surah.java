@@ -1,11 +1,10 @@
-package io.quran.app.entity;
+package io.quran.db.entity;
 
-import io.quran.app.entity.template.AbsEntity;
+import io.quran.db.entity.template.AbsEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import javax.persistence.*;
 import java.time.Instant;
 
