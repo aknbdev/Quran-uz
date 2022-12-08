@@ -16,9 +16,9 @@ import javax.persistence.*;
 @SQLDelete(sql = "UPDATE verses SET deleted = TRUE WHERE id = ?",  check = ResultCheckStyle.COUNT)
 public class Verse extends AbsEntity {
 
-//    @ManyToOne
-//    @JoinColumn(name = "surah_id", insertable = false, updatable = false)
-//    private Surah surah;
+    @ManyToOne
+    @JoinColumn(name = "surah_id", insertable = false, updatable = false)
+    private Surah surah;
 
     @Column(name = "surah_id")
     private Integer surahId;

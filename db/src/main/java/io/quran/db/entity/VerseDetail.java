@@ -23,16 +23,16 @@ public class VerseDetail extends AbsEntity {
     @Column(name = "verse_id")
     private Integer verseId;
 
-//    @ManyToOne
-//    @JoinColumn(name = "language_id", insertable = false, updatable = false)
-//    private Language language;
+    @ManyToOne
+    @JoinColumn(name = "language_id", insertable = false, updatable = false)
+    private Language language;
 
     @Column(name = "language_id")
     private Integer languageId;
 
-//    @ManyToOne
-//    @JoinColumn(name = "surah_id", insertable = false, updatable = false)
-//    private Surah surah;
+    @ManyToOne
+    @JoinColumn(name = "surah_id", insertable = false, updatable = false)
+    private Surah surah;
 
     @Column(name = "surah_id")
     private Integer surahId;
