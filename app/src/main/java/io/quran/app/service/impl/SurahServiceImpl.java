@@ -6,9 +6,12 @@ import io.quran.app.payload.ApiResult;
 import io.quran.app.payload.SurahDto;
 import io.quran.db.repository.SurahRepository;
 import io.quran.app.service.SurahService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Service
 public class SurahServiceImpl implements SurahService {
 
@@ -21,14 +24,31 @@ public class SurahServiceImpl implements SurahService {
     }
 
     @Override
-    public ApiResult<SurahDto> getSurahById(Integer id) {
-        Surah surah = getEntity(id);
+    public ApiResult<SurahDto> getSurahById(Integer id, Integer languageId) {
+        Surah surah = getEntity(id, languageId);
         return surah != null ? ApiResult.successResponse(surahMapper.toDto(surah)) : null;
+    }
+
+    @Override
+    public ApiResult<?> getAllSurahs() {
+        List<Surah> surahList = surahRepository.findAll();
+
+        if (surahList.isEmpty())
+            return ApiResult.errorResponse("Data not found", 400);
+
+        return ApiResult.successResponse(surahMapper.toEntityList(surahList));
+    }
+
+    @Override
+    public void saveSurah(SurahDto surahDto) {
+        Surah surah = surahMapper.toEntity(surahDto);
+        log.info("Surah -> {}", surah);
+//        surahRepository.save(surahMapper.toEntity(surahDto));
     }
 
 
     // =========== SECONDARY FUNCTIONS =========== //
-    public Surah getEntity(Integer surahId){
+    public Surah getEntity(Integer surahId, Integer languageId){
         Optional<Surah> optionalSurah = surahRepository.findById(surahId);
         return optionalSurah.isPresent() ? optionalSurah.get() : null;
     }

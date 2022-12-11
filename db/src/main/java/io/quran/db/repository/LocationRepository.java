@@ -1,10 +1,9 @@
 package io.quran.db.repository;
 
-import io.quran.db.entity.Surah;
+import io.quran.db.entity.Location;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface SurahRepository extends JpaRepository<Surah, Integer> {
-    
+public interface LocationRepository extends JpaRepository<Location, Integer> {
 }

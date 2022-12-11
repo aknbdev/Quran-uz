@@ -26,4 +26,6 @@ public class User extends AbsEntity {
     private String password;
 
     private String email;
+
+    private Boolean deleted = false;
 }

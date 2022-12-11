@@ -15,15 +15,6 @@ import lombok.Setter;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class SurahDto extends BaseDto {
     private String name;
-    private String uzbName;
-    private String kirilName;
-    private String separatorArabic;
     private Integer verseCount;
     private Integer orderNumber;
-    private Long milliseconds;
-
-    public SurahDto(String uzbName, String kirilName) {
-        this.uzbName = uzbName;
-        this.kirilName = kirilName;
-    }
 }
