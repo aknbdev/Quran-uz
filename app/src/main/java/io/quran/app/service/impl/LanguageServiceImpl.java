@@ -7,6 +7,8 @@ import io.quran.db.repository.LanguageRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.Collections;
 import java.util.List;
 
@@ -17,8 +19,9 @@ public class LanguageServiceImpl implements LanguageService {
 
     @Override
     public void createLanguage(LanguageDto dto) {
-//        Language language = dtoToEntity(dto);
-//        saveToDatabase(language);
+        Language language = dtoToEntity(dto);
+        language.setUpdatedAt(Timestamp.from(Instant.now()));
+        saveToDatabase(language);
     }
 
     @Override
@@ -38,11 +41,12 @@ public class LanguageServiceImpl implements LanguageService {
     }
 
     @Override
-    public void updateLanguage(String name, LanguageDto dto) {
-        getEntity(name);
-//        Language language = dtoToEntity(dto);
-//        language.setName(name);
-//        saveToDatabase(language);
+    public void updateLanguage(Integer id, LanguageDto dto) {
+        getEntity(id);
+        Language language = dtoToEntity(dto);
+        language.setId(id);
+        language.setUpdatedAt(Timestamp.from(Instant.now()));
+        saveToDatabase(language);
     }
 
     // |- SECONDARY FUNCTIONS -|
