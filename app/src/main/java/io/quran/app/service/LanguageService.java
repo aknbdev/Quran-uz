@@ -6,9 +6,9 @@ public interface LanguageService {
 
     void createLanguage(LanguageDto dto);
 
-    LanguageDto getLanguageById(Integer id);
+    LanguageDto getLanguageById(String name);
 
     List<LanguageDto> getAllLanguages();
 
-    void updateLanguage(Integer id, LanguageDto dto);
+    void updateLanguage(String name, LanguageDto dto);
 }

@@ -1,6 +1,6 @@
-package io.quran.app.constants;
+package io.quran.app.config;
 
-public interface ApiConstants {
+public interface ApiConfig {
 
     String BASE_API = "/api/v1";
 

@@ -1,6 +1,6 @@
 package io.quran.app.controller;
 
-import io.quran.app.payload.ApiResult;
+import io.quran.app.payload.api.ApiResult;
 import io.quran.app.payload.SurahDetailDto;
 import io.quran.app.service.SurahDetailService;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,5 +1,6 @@
-package io.quran.db.entity;
+package io.quran.db.entity.verse;
 
+import io.quran.db.entity.Language;
 import io.quran.db.entity.template.AbsEntity;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,8 +14,14 @@ import javax.persistence.*;
 @Entity
 @Table(name = "verse_details")
 @Where(clause = "deleted = FALSE")
-@SQLDelete(sql = "UPDATE verse_details SET deleted = TRUE WHERE id = ?",  check = ResultCheckStyle.COUNT)
+@SQLDelete(sql = "UPDATE verse_details SET deleted = TRUE WHERE id = ?", check = ResultCheckStyle.COUNT)
 public class VerseDetail extends AbsEntity {
+
+    @Column(name = "translation")
+    private String translation;
+
+    @Column(name = "description")
+    private String description;
 
     @ManyToOne
     @JoinColumn(name = "verse_id", insertable = false, updatable = false)
@@ -29,20 +36,4 @@ public class VerseDetail extends AbsEntity {
 
     @Column(name = "language_id")
     private Integer languageId;
-
-    @ManyToOne
-    @JoinColumn(name = "surah_id", insertable = false, updatable = false)
-    private Surah surah;
-
-    @Column(name = "surah_id")
-    private Integer surahId;
-
-    @Column(name = "transcript")
-    private String transcript;
-
-    @Column(name = "translation")
-    private String translation;
-
-    @Column(name = "description")
-    private String description;
 }

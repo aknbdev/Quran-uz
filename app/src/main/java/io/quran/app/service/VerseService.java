@@ -1,23 +1,13 @@
 package io.quran.app.service;
 
 
-import io.quran.app.payload.VerseDto;
+import io.quran.app.payload.verse.VerseSaveDto;
 
 import java.util.List;
 
 public interface VerseService {
 
-    void updateVerse(Integer id, VerseDto verseDto);
+    List<VerseSaveDto> getAllBySurahId(Integer id, String lang);
 
-    List<VerseDto> getAllVerses(long millisecond);
-
-    List<VerseDto> getAllBySurahId(Integer id, long millisecond);
-
-    List<VerseDto> getAllByJuzId(Integer juzId, Integer languageId, long millisecond);
-
-    void createVerse(VerseDto verseDto);
+    List<VerseSaveDto> getAllByJuzId(Integer juzId, String lang);
 }
-
-
-// DEPRECATED CODES
-//    VerseDto getByVerseId(Integer verseId, Integer languageId, long millisecond);

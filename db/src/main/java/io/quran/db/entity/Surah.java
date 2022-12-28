@@ -2,12 +2,11 @@ package io.quran.db.entity;
 
 import io.quran.db.entity.template.AbsEntity;
 import lombok.*;
-import org.hibernate.annotations.*;
+import org.hibernate.annotations.ResultCheckStyle;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import java.sql.Timestamp;
 import java.time.Instant;
 
 @Getter

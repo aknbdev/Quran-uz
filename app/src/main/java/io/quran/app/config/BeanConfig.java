@@ -1,6 +1,5 @@
 package io.quran.app.config;
 
-import io.quran.app.utils.QuranAPI;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;

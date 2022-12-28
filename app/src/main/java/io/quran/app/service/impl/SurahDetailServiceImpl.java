@@ -1,7 +1,7 @@
 package io.quran.app.service.impl;
 
 import io.quran.app.mapper.SurahDetailMapper;
-import io.quran.app.payload.ApiResult;
+import io.quran.app.payload.api.ApiResult;
 import io.quran.app.payload.SurahDetailDto;
 import io.quran.app.service.SurahDetailService;
 import io.quran.db.entity.SurahDetail;

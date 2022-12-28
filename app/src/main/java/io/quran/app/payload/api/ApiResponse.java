@@ -1,4 +1,4 @@
-package io.quran.app.payload;
+package io.quran.app.payload.api;
 
 import lombok.*;
 

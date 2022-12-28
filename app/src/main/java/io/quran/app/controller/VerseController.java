@@ -1,16 +1,15 @@
 package io.quran.app.controller;
 
-import io.quran.app.constants.ApiConstants;
-import io.quran.app.payload.VerseDto;
+import io.quran.app.config.ApiConfig;
 import io.quran.app.service.VerseService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import javax.validation.Valid;
-import java.net.URI;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(ApiConstants.VERSE_API)
+@RequestMapping(ApiConfig.VERSE_API)
 public class VerseController {
     private final VerseService verseService;
 
@@ -18,57 +17,17 @@ public class VerseController {
         this.verseService = verseService;
     }
 
-    @PostMapping("/create")
-    // TODO: 08/12/22
-//    @ApiOperation(value = "Create new verse", notes = "Create new verse", response = String.class)
-    public ResponseEntity<?> createVerse(@Valid @RequestBody VerseDto dto) {
-        verseService.createVerse(dto);
-        URI uri = URI.create(ServletUriComponentsBuilder
-                .fromCurrentContextPath()
-                .path(ApiConstants.VERSE_API + "/create")
-                .toUriString());
-        return ResponseEntity.created(uri).body("Ok, Verse created!");
+    @GetMapping("/get-by-surah")
+    public ResponseEntity<?> getAllBySurahId(@RequestParam("surah-id") Integer surahId,
+                                             @RequestParam("lang") String lang) {
+
+        return ResponseEntity.ok(verseService.getAllBySurahId(surahId, lang));
     }
 
+    @GetMapping("/get-by-juz")
+    public ResponseEntity<?> getAllByJuzId(@RequestParam("juzNumber") Integer juzNumber,
+                                           @RequestParam("lang-id") String lang) {
 
-    @GetMapping("/surah-id/{id}/{millisecond}")
-    public ResponseEntity<?> getAllBySurahId(@PathVariable("id") Integer id,
-                                             @PathVariable long millisecond) {
-        return ResponseEntity.ok(verseService.getAllBySurahId(id, millisecond));
-    }
-
-    @GetMapping("/by-juz-id/{juz-id}/{lang-id}/{millisecond}")
-    public ResponseEntity<?> getAllByJuzId(@PathVariable("juz-id") Integer juzId,
-                                           @PathVariable("lang-id") Integer languageId,
-                                           @PathVariable("millisecond") long millisecond) {
-
-        return ResponseEntity.ok(verseService.getAllByJuzId(juzId, languageId, millisecond));
-    }
-
-
-    @PutMapping("/update/{id}")
-    public ResponseEntity<?> updateVerse(@PathVariable("id") Integer id,
-                                         @Valid @RequestBody VerseDto dto) {
-        verseService.updateVerse(id, dto);
-        return ResponseEntity.ok("Ok, Updated!");
-    }
-
-    @GetMapping("/{millisecond}")
-    public ResponseEntity<?> getAllVerses(@PathVariable long millisecond) {
-        return ResponseEntity.ok(verseService.getAllVerses(millisecond));
+        return ResponseEntity.ok(verseService.getAllByJuzId(juzNumber, lang));
     }
 }
-
-
-//    @GetMapping("/get-one/{verse-id}/{language-id}/{millisecond}")
-//    public ResponseEntity<?> getVerseById(@PathVariable("verse-id") Integer verseId,
-//                                          @PathVariable("language-id") Integer languageId,
-//                                          @PathVariable long millisecond) {
-//        return ResponseEntity.ok(verseService.getByVerseId(verseId, languageId, millisecond));
-//    }
-
-
-//    @GetMapping("/juz/{millisecond}")
-//    public ResponseEntity<?> getAllVerseByJuz(@PathVariable long millisecond) {
-//        return ResponseEntity.ok(verseService.getAllVerseByJuz(millisecond));
-//    }

@@ -27,5 +27,4 @@ public abstract class AbsEntity implements Serializable {
     private Timestamp updatedAt;//OBJECT O'ZGARGANDA ISHLAYDI
 
     private Boolean deleted = false;
-
 }

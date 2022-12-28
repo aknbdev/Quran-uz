@@ -1,13 +1,8 @@
-package io.quran.db.repository;
+package io.quran.db.repository.verse;
 
-import io.quran.db.entity.Verse;
+import io.quran.db.entity.verse.Verse;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-
-import java.time.Instant;
-import java.util.List;
 
 @Repository
 public interface VerseRepository extends JpaRepository<Verse, Integer> {

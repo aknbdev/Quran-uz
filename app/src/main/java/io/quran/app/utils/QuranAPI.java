@@ -1,6 +1,6 @@
 package io.quran.app.utils;
 
-import io.quran.app.payload.ApiResponse;
+import io.quran.app.payload.api.ApiResponse;
 import io.quran.app.payload.SurahDto;
 import io.quran.app.service.SurahDetailService;
 import io.quran.app.service.SurahService;

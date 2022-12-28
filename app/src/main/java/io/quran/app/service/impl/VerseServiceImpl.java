@@ -1,14 +1,12 @@
 package io.quran.app.service.impl;
 
-import io.quran.app.payload.VerseDto;
+import io.quran.app.payload.verse.VerseSaveDto;
 import io.quran.app.service.VerseService;
-import io.quran.db.entity.Verse;
-import io.quran.db.repository.VerseDetailRepository;
-import io.quran.db.repository.VerseRepository;
+import io.quran.db.repository.verse.VerseDetailRepository;
+import io.quran.db.repository.verse.VerseRepository;
 import org.springframework.stereotype.Service;
-import java.time.Instant;
-import java.util.*;
-import java.util.stream.Collectors;
+
+import java.util.List;
 
 @Service
 public class VerseServiceImpl implements VerseService {
@@ -25,10 +23,23 @@ public class VerseServiceImpl implements VerseService {
     }
 
     @Override
+    public List<VerseSaveDto> getAllBySurahId(Integer id, String lang) {
+
+        return null;
+    }
+
+    @Override
+    public List<VerseSaveDto> getAllByJuzId(Integer juzId, String lang) {
+
+        return null;
+    }
+}
+
+/* |->  DEPRECATED THINGS   <-|
+@Override
     public void createVerse(VerseDto dto) {
         Verse verse = dtoToVerse(dto);
         // TODO: 08/12/22
-//        verse.setUpdatedAt(Instant.now());
         saveToDatabase(verse);
     }
 
@@ -37,7 +48,6 @@ public class VerseServiceImpl implements VerseService {
         Verse newVerse = dtoToVerse(dto);
         newVerse.setId(id);
         // TODO: 08/12/22
-//        newVerse.setUpdatedAt(Instant.now());
         saveToDatabase(newVerse);
     }
 
@@ -131,7 +141,7 @@ public class VerseServiceImpl implements VerseService {
                 4706, 5105, 5242, 5673};
 
         List<Verse> verses = null;
-                // TODO: 08/12/22
+        // TODO: 08/12/22
 //                verseRepository.getAllByJuzId(juzVerseId, time);
 
         if (verses.isEmpty()) return null;
@@ -156,118 +166,4 @@ public class VerseServiceImpl implements VerseService {
 //            throw new ServerBadRequestException(e.getMessage());
         }
     }
-
-    public Verse dtoToVerse(VerseDto dto) {
-        Verse verse = new Verse();
-
-        verse.setId(dto.getVerseId());
-        verse.setSurahId(dto.getSurahId());
-        verse.setVerseText(dto.getVerseText());
-        verse.setOrderNumber(dto.getOrder_number());
-        verse.setJuzId(dto.getJuzId());
-        // TODO: 08/12/22
-//        verse.setUpdatedAt(TimeConverter.convertToLocalDateTime(dto.getMilliseconds()));
-        return verse;
-    }
-
-    public VerseDto verseToDto(Verse verse) {
-        VerseDto dto = new VerseDto();
-
-        dto.setVerseId(verse.getId());
-        // TODO: 08/12/22
-//        dto.setSurahDto(surahService.entityToDto(verse.getSurah(), new SurahDto()));
-        dto.setSurahId(verse.getSurahId());
-        dto.setVerseText(verse.getVerseText());
-        dto.setOrder_number(verse.getOrderNumber());
-        dto.setJuzId(verse.getJuzId());
-        // TODO: 08/12/22
-//        dto.setMilliseconds(TimeConverter.convertMilliseconds(verse.getUpdatedDate()));
-        return dto;
-    }
-}
-
-
-// |->  DEPRECATED THINGS   <-|
-
-
-//    public List<ParaDto> verseToJuzDto(List<Verse> verse, Long millisecond) {
-//
-//        int[] surahIdS = new int[30];
-//
-//        for (int i = 0; i < 30; i++) {
-//            surahIdS[i] = verse.get(i).getSurahId();
-//        }
-//
-//        Map<Integer, SurahDetail> surahDetailMap = new HashMap<>();
-//
-//        surahDetailService.getAllSurahDetailsBySurahIdListAndLanguageId(surahIdS, millisecond, 1)
-//                .forEach(surahDetail -> surahDetailMap.put(surahDetail.getSurahId(), surahDetail));
-//
-//        List<ParaDto> paraDtoList = new ArrayList<>();
-//
-//        verse.forEach(
-//                verse1 -> paraDtoList.add(
-//                        new ParaDto(
-//                                verse1.getJuzId(),
-//                                surahDetailMap.get(verse1.getSurahId()).getSurahName(),
-//                                verse1.getOrderNumber()
-//                        )
-//                )
-//        );
-//
-//        return paraDtoList;
-//    }
-
-//    @Override
-//    public List<ParaDto> getAllVerseByJuz(long millisecond) {
-//
-//        return verseToJuzDto(getAllByJuz(TimeConverter.convertToLocalDateTime(millisecond)), millisecond);
-//    }
-
-//        return verses.stream().map(this::verseToDto).collect(Collectors.toList());
-
-
-//    @Override
-//    public VerseDto getByVerseId(Integer verseId,
-//                                 Integer languageId,
-//                                 long millisecond) {
-//
-//        Optional<Verse> optionalVerse = verseRepository
-//                .findByVerseIdAndUpdatedDateAfter(
-//                        verseId,
-//                        TimeConverter.convertToLocalDateTime(millisecond)
-//                );
-//        if (optionalVerse.isEmpty()){
-//            return null;
-//        }
-//
-//        String translation = verseDetailRepository.getVerseTranslation(languageId, optionalVerse.get().getVerseId());
-//
-//        return verseToDto(optionalVerse.get());
-//    }
-//    public Verse getVerse(Integer id, Instant time) {
-//        return ;
-//    }
-//            throw new ServerBadRequestException("Verse not found!"));
-//            throw new ServerBadRequestException("Verses not found!");
-//            throw new ServerBadRequestException("Verses not found!");
-
-//        dto.setJuzId(verse.getJuzId());
-//        dto.setVerseOrderNumber(verse.getOrder_number());
-//        dto.setSurahName(surahDetailService.getBySurahIdAndTime(verse.getSurahId(), 0).getSurahName());
-
-//        return getAllByJuz(TimeConverter.convertToLocalDateTime(millisecond))
-//                .stream()
-//                .map(this::verseToJuzDto)
-//                .collect(Collectors.toList());
-
-
-//        for (int i = 1; i <= 30; i++) {
-//            if (verseRepository.getFirstByJuzId(i, time).isPresent()) {
-//                verses.add(verseRepository.getFirstByJuzId(i, time).get());
-//            }
-//        }
-
-//    public Verse getEntityByJuzId(Integer juzId, Instant time) {
-//        return verseRepository.getFirstByJuzId(juzId, time).orElse(null);
-//    }
+ */
