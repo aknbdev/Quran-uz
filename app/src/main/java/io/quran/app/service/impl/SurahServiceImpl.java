@@ -40,10 +40,11 @@ public class SurahServiceImpl implements SurahService {
     }
 
     @Override
-    public void saveSurah(SurahDto surahDto) {
+    public Surah saveSurah(SurahDto surahDto) {
         Surah surah = surahMapper.toEntity(surahDto);
         log.info("Surah -> {}", surah);
-//        surahRepository.save(surahMapper.toEntity(surahDto));
+        return surahRepository.save(surahMapper.toEntity(surahDto));
+//        return null;
     }
 
 
