@@ -2,9 +2,9 @@ server.port: 8080
 
 spring:
   datasource:
-    url: jdbc:postgresql://containers-us-west-138.railway.app:7460/railway
+    url: jdbc:postgresql://containers-us-west-122.railway.app:6005/railway
     username: postgres
-    password: zuEC8k22UE22MZLrSnui
+    password: 7PvhZZxc2nItK35BIJTb
     driver-class-name: org.postgresql.Driver
   jpa:
     show-sql: true

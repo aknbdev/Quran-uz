@@ -4,31 +4,25 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
+import io.quran.db.entity.template.AbsEntity;
+import org.hibernate.annotations.ResultCheckStyle;
 import javax.persistence.*;
-import java.sql.Timestamp;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "languages")
-public class Language {
+@Entity
+@Table(name = "languages")
+@Where(clause = "deleted=false")
+@SQLDelete(sql = "UPDATE languages SET deleted = TRUE WHERE id = ?",  check = ResultCheckStyle.COUNT)
+public class Language extends AbsEntity{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "name")
     private String name;
 
-    @CreationTimestamp
-    @Column(updatable = false, name = "created_at")
-    private Timestamp createdAt;
-
-    @UpdateTimestamp
-    @Column(name = "updated_at")
-    private Timestamp updatedAt;
-
-    private Boolean deleted = false;
+    @Column(name = "code")
+    private String code;
 }
