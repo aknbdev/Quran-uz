@@ -3,7 +3,7 @@ package io.quran.app.service.impl;
 import io.quran.db.entity.Surah;
 import io.quran.app.mapper.SurahMapper;
 import io.quran.app.payload.api.ApiResult;
-import io.quran.app.payload.SurahDto;
+import io.quran.app.payload.surah.SurahDto;
 import io.quran.db.repository.SurahRepository;
 import io.quran.app.service.SurahService;
 import lombok.extern.slf4j.Slf4j;

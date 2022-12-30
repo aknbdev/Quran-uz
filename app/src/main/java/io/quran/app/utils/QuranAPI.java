@@ -1,12 +1,10 @@
 package io.quran.app.utils;
 
-import io.quran.app.payload.ApiResponse;
-import io.quran.app.payload.SurahDetailDto;
-import io.quran.app.payload.SurahDto;
+import io.quran.app.payload.surah.SurahDto;
+import io.quran.app.payload.api.ApiResponse;
 import io.quran.app.service.SurahDetailService;
 import io.quran.app.service.SurahService;
 import io.quran.db.entity.Surah;
-import io.quran.db.entity.SurahDetail;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;

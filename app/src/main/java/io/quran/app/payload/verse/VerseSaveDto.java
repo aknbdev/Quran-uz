@@ -1,7 +1,7 @@
 package io.quran.app.payload.verse;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import io.quran.app.payload.SurahDto;
+import io.quran.app.payload.surah.SurahDto;
 import lombok.Getter;
 import lombok.Setter;
 import javax.validation.constraints.NotBlank;

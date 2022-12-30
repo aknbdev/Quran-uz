@@ -1,7 +1,7 @@
 package io.quran.app.payload.verse;
 
 import io.quran.app.payload.LanguageDto;
-import io.quran.app.payload.SurahDto;
+import io.quran.app.payload.surah.SurahDto;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -1,7 +1,7 @@
 package io.quran.app.service;
 
 import io.quran.app.payload.api.ApiResult;
-import io.quran.app.payload.SurahDto;
+import io.quran.app.payload.surah.SurahDto;
 import io.quran.db.entity.Surah;
 
 public interface SurahService {

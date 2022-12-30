@@ -1,4 +1,4 @@
-package io.quran.app.payload;
+package io.quran.app.payload.surah;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.quran.app.payload.template.BaseDto;
