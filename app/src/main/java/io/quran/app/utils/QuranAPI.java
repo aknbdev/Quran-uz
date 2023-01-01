@@ -45,7 +45,7 @@ public class QuranAPI {
 
         Surah surah = surahService.saveSurah(surahDto);
         // LOCATION ======> Makka = 3, Madina = 4 @TODO o'zgaradi @TODO o'zgaradi
-        surahDetailService.saveSurahDetail(surah, "Наас", 2, 3, 2);
+        surahDetailService.saveSurahDetail(surah, "Наас", 2, 3);
 
         // ========================
 
@@ -73,16 +73,15 @@ public class QuranAPI {
                 verses.get(verse.getId()).setPageNumber(verse.getPage_number());
                 verses.get(verse.getId()).setOrderNumber(verse.getVerse_number());
             });
+        }
+        SurahInfoList surahInfoList;
+        temp = "https://quranenc.com/api/v1/translation/sura/uzbek_mansour/";
+        for (int j = 1; j <= 114; j++) {
 
-            SurahInfoList surahInfoList;
-            temp = "https://quranenc.com/api/v1/translation/sura/uzbek_mansour/";
-            for (int j = 1; j <= 114; j++) {
-
-                surahInfoList = restTemplate.getForObject(temp + j, SurahInfoList.class);
-                surahInfoList.getSurahInfoList().forEach(surah -> {
-                    verses.get(surah.getId()).setSurahId(surah.getSurahId());
-                });
-            }
+            surahInfoList = restTemplate.getForObject(temp + j, SurahInfoList.class);
+            surahInfoList.getSurahInfoList().forEach(surah -> {
+                verses.get(surah.getId()).setSurahId(surah.getSurahId());
+            });
         }
 
         return verses;

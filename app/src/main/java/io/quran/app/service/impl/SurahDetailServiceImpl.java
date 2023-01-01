@@ -7,12 +7,10 @@ import io.quran.app.service.SurahDetailService;
 import io.quran.db.entity.Surah;
 import io.quran.db.entity.SurahDetail;
 import io.quran.db.repository.SurahDetailRepository;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
 
-@Slf4j
 @Service
 public class SurahDetailServiceImpl implements SurahDetailService {
 
@@ -31,12 +29,11 @@ public class SurahDetailServiceImpl implements SurahDetailService {
     }
 
     @Override
-    public void saveSurahDetail(Surah surah, String surahName, Integer languageId, Integer locationId, Integer separatorTextId) {
+    public void saveSurahDetail(Surah surah, String surahName, Integer languageId, Integer locationId) {
         SurahDetail surahDetail = new SurahDetail();
         surahDetail.setSurahId(surah.getId());
         surahDetail.setLanguageId(languageId);
         surahDetail.setLocationId(locationId);
-        surahDetail.setSeparatorTextId(separatorTextId);
         surahDetail.setSurahName(surahName);
 
         surahDetailRepository.save(surahDetail);
