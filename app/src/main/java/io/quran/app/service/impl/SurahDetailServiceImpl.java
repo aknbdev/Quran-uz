@@ -4,28 +4,26 @@ import io.quran.app.mapper.SurahDetailMapper;
 import io.quran.app.payload.api.ApiResult;
 import io.quran.app.payload.surah.SurahDetailDto;
 import io.quran.app.payload.surah.SurahWithName;
+import io.quran.app.service.LanguageService;
 import io.quran.app.service.SurahDetailService;
 import io.quran.db.entity.SurahDetail;
 import io.quran.db.repository.SurahDetailRepository;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class SurahDetailServiceImpl implements SurahDetailService {
 
     private final SurahDetailRepository surahDetailRepository;
     private final SurahDetailMapper mapper;
-
-    public SurahDetailServiceImpl(SurahDetailRepository surahDetailRepository, SurahDetailMapper surahDetailMapper) {
-        this.surahDetailRepository = surahDetailRepository;
-        this.mapper = surahDetailMapper;
-    }
+    private final LanguageService languageService;
 
     @Transactional(readOnly = true)
     public ApiResult<SurahDetailDto> getSurahDetailById(Integer surahId, Integer languageId){
@@ -34,9 +32,12 @@ public class SurahDetailServiceImpl implements SurahDetailService {
     }
 
     @Override
-    public ApiResult<List<SurahWithName>> getSurahs(Integer languageId) {
+    public ApiResult<?> getSurahs(String languageCode) {
         List<SurahWithName> surahWithNames = new ArrayList<>();
-        List<SurahDetail> surahDetailList = getAllEntity(languageId);
+        List<SurahDetail> surahDetailList = getAllEntity(languageCode);
+
+        if(surahDetailList == null || surahDetailList.isEmpty())
+            return ApiResult.errorResponse("Surahs not found with this code", 404);
 
         for (SurahDetail surahDetail : surahDetailList) {
             SurahWithName surah = new SurahWithName();
@@ -56,7 +57,9 @@ public class SurahDetailServiceImpl implements SurahDetailService {
         return optional.isPresent() ? optional.get() : null;
     }
 
-    public List<SurahDetail> getAllEntity(Integer languageId){
+    public List<SurahDetail> getAllEntity(String languageCode){
+        Integer languageId = languageService.getLanguageIdByCode(languageCode);
+        log.info("Language id => {}", languageId);
         List<SurahDetail> surahDetailList = surahDetailRepository.findAllByLanguageId(languageId);
         return !surahDetailList.isEmpty() ? surahDetailList : null;
     }

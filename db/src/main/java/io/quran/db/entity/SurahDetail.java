@@ -45,11 +45,5 @@ public class SurahDetail extends AbsEntity {
     @Column(name = ("location_id"))
     private Integer locationId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = ("separator_text_id"), insertable = false, updatable = false)
-    private SeparatorText separatorText;
-
-    @Column(name = ("separator_text_id"))
-    private Integer separatorTextId;
 }
 

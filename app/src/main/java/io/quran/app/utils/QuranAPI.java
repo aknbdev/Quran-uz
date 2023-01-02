@@ -42,7 +42,7 @@ public class QuranAPI {
 
         Surah surah = surahService.saveSurah(surahDto);
         // LOCATION ======>    Makka = 3, Madina = 4         @TODO o'zgaradi       @TODO o'zgaradi
-        surahDetailService.saveSurahDetail(surah,  "Наас", 2, 3, 2);
+//        surahDetailService.saveSurahDetail(surah,  "Наас", 2, 3, 2);
 
         // ========================
 

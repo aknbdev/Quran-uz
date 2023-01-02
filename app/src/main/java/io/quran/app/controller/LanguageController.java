@@ -20,24 +20,25 @@ public class LanguageController {
 
     @GetMapping("/get")
     public ResponseEntity<?> getOne(@RequestParam("name") String name) {
-        return ResponseEntity.ok(languageService.getLanguageById(name));
+//        return ResponseEntity.ok(languageService.getLanguageById(name));
+        return null;
     }
 
     @GetMapping("/get-all")
-    public ResponseEntity<?> getAll() {
-        return ResponseEntity.ok(languageService.getAllLanguages());
-    }
+//    public ResponseEntity<?> getAll() {
+//        return ResponseEntity.ok(languageService.getAllLanguages());
+//    }
 
     @PostMapping("/create")
     public ResponseEntity<?> create(@Valid @RequestBody LanguageDto dto) {
-        languageService.createLanguage(dto);
+//        languageService.createLanguage(dto);
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/language/create").toUriString());
         return ResponseEntity.created(uri).body("Ok, Language created!");
     }
 
     @PutMapping("/update")
     public ResponseEntity<?> update(@RequestParam("name") String name, @Valid @RequestBody LanguageDto dto) {
-        languageService.updateLanguage(name, dto);
+//        languageService.updateLanguage(name, dto);
         return ResponseEntity.ok("Ok, Language updated!");
     }
 }

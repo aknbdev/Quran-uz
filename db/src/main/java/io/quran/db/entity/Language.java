@@ -1,34 +1,26 @@
 package io.quran.db.entity;
 
+import io.quran.db.entity.template.AbsEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
 import javax.persistence.*;
-import java.sql.Timestamp;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "languages")
-public class Language {
+public class Language extends AbsEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public Language(Integer id){
+        super.setId(id);
+    }
+
     @Column(name = "name")
     private String name;
 
-    @CreationTimestamp
-    @Column(updatable = false, name = "created_at")
-    private Timestamp createdAt;
-
-    @UpdateTimestamp
-    @Column(name = "updated_at")
-    private Timestamp updatedAt;
-
-    private Boolean deleted = false;
+    @Column(name = "code")
+    private String code;
 }

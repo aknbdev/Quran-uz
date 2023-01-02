@@ -28,9 +28,9 @@ public class SurahController {
         return result;
     }
 
-    @GetMapping("/{languageId}")
-    public ApiResult<List<SurahWithName>> getAllSurahs(@PathVariable Integer languageId){
-        ApiResult<List<SurahWithName>> result = surahDetailService.getSurahs(languageId);
+    @GetMapping("/{languageCode}")
+    public ApiResult<?> getAllSurahs(@PathVariable String languageCode){
+        ApiResult<?> result = surahDetailService.getSurahs(languageCode);
         return result;
     }
 

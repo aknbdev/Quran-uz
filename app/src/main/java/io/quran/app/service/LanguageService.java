@@ -4,11 +4,6 @@ import java.util.List;
 
 public interface LanguageService {
 
-    void createLanguage(LanguageDto dto);
+    Integer getLanguageIdByCode(String code);
 
-    LanguageDto getLanguageById(String name);
-
-    List<LanguageDto> getAllLanguages();
-
-    void updateLanguage(String name, LanguageDto dto);
 }
