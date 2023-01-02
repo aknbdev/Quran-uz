@@ -1,5 +1,6 @@
 package io.quran.app.controller;
 
+import io.quran.app.config.ApiConfig;
 import io.quran.app.payload.api.ApiResult;
 import io.quran.app.payload.surah.SurahDetailDto;
 import io.quran.app.payload.surah.SurahWithName;
@@ -8,11 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
+import static io.quran.app.config.ApiConfig.SURAH_API;
 
 @RestController
-@RequestMapping("/api/v1/surah")
+@RequestMapping(SURAH_API)
 public class SurahController {
 
     private final SurahDetailService surahDetailService;
@@ -28,9 +28,9 @@ public class SurahController {
         return result;
     }
 
-    @GetMapping("/{languageCode}")
-    public ApiResult<?> getAllSurahs(@PathVariable String languageCode){
-        ApiResult<?> result = surahDetailService.getSurahs(languageCode);
+    @GetMapping("/{languageId}")
+    public ApiResult<?> getAllSurahs(@PathVariable Integer languageId){
+        ApiResult<?> result = surahDetailService.getSurahs(languageId);
         return result;
     }
 

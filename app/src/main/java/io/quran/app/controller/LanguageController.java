@@ -2,12 +2,14 @@ package io.quran.app.controller;
 
 import io.quran.app.config.ApiConfig;
 import io.quran.app.payload.LanguageDto;
+import io.quran.app.payload.api.ApiResult;
 import io.quran.app.service.LanguageService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.validation.Valid;
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping(ApiConfig.LANGUAGE_API)
@@ -18,16 +20,11 @@ public class LanguageController {
         this.languageService = languageService;
     }
 
-    @GetMapping("/get")
-    public ResponseEntity<?> getOne(@RequestParam("name") String name) {
-//        return ResponseEntity.ok(languageService.getLanguageById(name));
-        return null;
+    @GetMapping
+    public ApiResult<List<LanguageDto>> getAllLanguages() {
+        ApiResult<List<LanguageDto>> result = languageService.getAllLanguages();
+        return result;
     }
-
-    @GetMapping("/get-all")
-//    public ResponseEntity<?> getAll() {
-//        return ResponseEntity.ok(languageService.getAllLanguages());
-//    }
 
     @PostMapping("/create")
     public ResponseEntity<?> create(@Valid @RequestBody LanguageDto dto) {

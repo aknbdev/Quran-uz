@@ -32,9 +32,9 @@ public class SurahDetailServiceImpl implements SurahDetailService {
     }
 
     @Override
-    public ApiResult<?> getSurahs(String languageCode) {
+    public ApiResult<?> getSurahs(Integer languageId) {
         List<SurahWithName> surahWithNames = new ArrayList<>();
-        List<SurahDetail> surahDetailList = getAllEntity(languageCode);
+        List<SurahDetail> surahDetailList = getAllEntity(languageId);
 
         if(surahDetailList == null || surahDetailList.isEmpty())
             return ApiResult.errorResponse("Surahs not found with this code", 404);
@@ -54,12 +54,12 @@ public class SurahDetailServiceImpl implements SurahDetailService {
 
     public SurahDetail getEntity(Integer surahId, Integer languageId){
         Optional<SurahDetail> optional = surahDetailRepository.findBySurahIdAndLanguageId(surahId, languageId);
-        return optional.isPresent() ? optional.get() : null;
+        return optional.orElse(null);
     }
 
-    public List<SurahDetail> getAllEntity(String languageCode){
-        Integer languageId = languageService.getLanguageIdByCode(languageCode);
-        log.info("Language id => {}", languageId);
+    public List<SurahDetail> getAllEntity(Integer languageId){
+//        Integer languageId = languageService.getLanguageIdByCode(languageCode);
+//        log.info("Language id => {}", languageId);
         List<SurahDetail> surahDetailList = surahDetailRepository.findAllByLanguageId(languageId);
         return !surahDetailList.isEmpty() ? surahDetailList : null;
     }

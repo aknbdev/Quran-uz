@@ -2,12 +2,16 @@ package io.quran.app.service.impl;
 
 import io.quran.app.exception.RestException;
 import io.quran.app.mapper.LanguageMapper;
+import io.quran.app.payload.LanguageDto;
+import io.quran.app.payload.api.ApiResult;
 import io.quran.app.service.LanguageService;
 import io.quran.db.entity.Language;
 import io.quran.db.repository.LanguageRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -15,6 +19,14 @@ import java.util.Optional;
 public class LanguageServiceImpl implements LanguageService {
     private final LanguageRepository languageRepository;
     private final LanguageMapper languageMapper;
+
+    @Override
+    public ApiResult<List<LanguageDto>> getAllLanguages() {
+        List<Language> languageList = languageRepository.findAll();
+        List<LanguageDto> languageDtoList = languageMapper.toDtoList(languageList);
+
+        return ApiResult.successResponse(languageDtoList);
+    }
 
     @Override
     public Integer getLanguageIdByCode(String code) {
