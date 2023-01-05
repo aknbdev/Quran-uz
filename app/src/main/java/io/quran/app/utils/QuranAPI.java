@@ -2,8 +2,10 @@ package io.quran.app.utils;
 
 import io.quran.app.payload.surah.SurahDto;
 import io.quran.app.payload.api.ApiResponse;
+import io.quran.app.service.JuzService;
 import io.quran.app.service.SurahDetailService;
 import io.quran.app.service.SurahService;
+import io.quran.db.entity.Juz;
 import io.quran.db.entity.Surah;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +22,7 @@ public class QuranAPI {
     private final RestTemplate restTemplate;
 
     private final SurahService surahService;
+    private final JuzService juzService;
 
     private final SurahDetailService surahDetailService;
     private final int SURAH_NUMBER = 114; // @TODO o'zgaradi
@@ -46,6 +49,18 @@ public class QuranAPI {
 
         // ========================
 
+    }
+
+    public void saveJuz(){
+        System.out.println("Hello !!!");
+        Juz juz = new Juz();
+
+        juz.setJuzNumber(22); // @Todo Juz Order Number o'zgaradi
+        juz.setSurahOrderNumber(36); // @Todo Surah Order Number o'zgaradi
+        juz.setVersesOrderNumber("1-27"); // @Todo Verses Order Number o'zgaradi
+        juz.setVersesCount(27); // @Todo Verses Count o'zgaradi
+
+        juzService.saveJuz(juz);
     }
 
 }

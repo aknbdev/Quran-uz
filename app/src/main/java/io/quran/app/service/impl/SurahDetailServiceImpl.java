@@ -13,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,16 +32,21 @@ public class SurahDetailServiceImpl implements SurahDetailService {
         return ApiResult.successResponse(mapper.toDto(surahDetail));
     }
 
-    @Override
-    public ApiResult<?> getSurahs(Integer languageId) {
+    public ApiResult<?> getSurahs(Integer languageId){
+        List<SurahWithName> surahs = getSurahsForApi(languageId);
+        return ApiResult.successResponse(surahs);
+    }
+
+    public List<SurahWithName> getSurahsForApi(Integer languageId) {
         List<SurahWithName> surahWithNames = new ArrayList<>();
         List<SurahDetail> surahDetailList = getAllEntity(languageId);
 
         if(surahDetailList == null || surahDetailList.isEmpty())
-            return ApiResult.errorResponse("Surahs not found with this code", 404);
+            return Collections.emptyList();
 
         for (SurahDetail surahDetail : surahDetailList) {
             SurahWithName surah = new SurahWithName();
+            surah.setSurahId(surahDetail.getId());
             surah.setArabicName(surahDetail.getSurah().getName());
             surah.setName(surahDetail.getSurahName());
             surah.setOrderNumber(surahDetail.getSurah().getOrderNumber());
@@ -49,7 +55,7 @@ public class SurahDetailServiceImpl implements SurahDetailService {
             surahWithNames.add(surah);
         }
 
-        return ApiResult.successResponse(surahWithNames);
+        return surahWithNames;
     }
 
     public SurahDetail getEntity(Integer surahId, Integer languageId){
@@ -60,7 +66,7 @@ public class SurahDetailServiceImpl implements SurahDetailService {
     public List<SurahDetail> getAllEntity(Integer languageId){
 //        Integer languageId = languageService.getLanguageIdByCode(languageCode);
 //        log.info("Language id => {}", languageId);
-        List<SurahDetail> surahDetailList = surahDetailRepository.findAllByLanguageId(languageId);
+        List<SurahDetail> surahDetailList = surahDetailRepository.findAllByLanguageIdOrderByIdAsc(languageId);
         return !surahDetailList.isEmpty() ? surahDetailList : null;
     }
 }

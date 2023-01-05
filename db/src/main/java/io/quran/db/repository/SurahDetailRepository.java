@@ -1,6 +1,7 @@
 package io.quran.db.repository;
 
 import io.quran.db.entity.SurahDetail;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,6 +13,7 @@ public interface SurahDetailRepository extends JpaRepository<SurahDetail, Intege
 
     Optional<SurahDetail> findBySurahIdAndLanguageId(Integer surahId, Integer languageId);
 
-    List<SurahDetail> findAllByLanguageId(Integer languageId);
+    @EntityGraph(type = EntityGraph.EntityGraphType.FETCH, value = "surah_detail_entity_graph")
+    List<SurahDetail> findAllByLanguageIdOrderByIdAsc(Integer languageId);
 
 }

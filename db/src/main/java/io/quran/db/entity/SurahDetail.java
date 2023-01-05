@@ -1,8 +1,7 @@
 package io.quran.db.entity;
 
-
-import com.fasterxml.jackson.annotation.JsonInclude;
 import io.quran.db.entity.template.AbsEntity;
+import jdk.jfr.Name;
 import lombok.*;
 import org.hibernate.annotations.ResultCheckStyle;
 import org.hibernate.annotations.SQLDelete;
@@ -14,14 +13,14 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@JsonInclude(JsonInclude.Include.NON_NULL)
 @Entity
 @Table(name = ("surah_details"))
 @Where(clause = "deleted=false")
 @SQLDelete(sql = "UPDATE verses SET deleted = TRUE WHERE id = ?",  check = ResultCheckStyle.COUNT)
+@NamedEntityGraph(name = "surah_detail_entity_graph", attributeNodes = @NamedAttributeNode("surah"))
 public class SurahDetail extends AbsEntity {
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "surah_id", insertable = false, updatable = false)
     private Surah surah;
 
