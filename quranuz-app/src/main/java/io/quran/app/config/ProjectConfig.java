@@ -1,12 +1,16 @@
 package io.quran.app.config;
 
-public interface ProjectConfig {
+import lombok.Getter;
+import org.springframework.stereotype.Component;
 
-    String BASE_PACKAGE = "io.quran";
+@Getter
+@Component
+public abstract class ProjectConfig {
 
-    String REPOSITORY_PACKAGE = BASE_PACKAGE + ".*.repository";
-    String ENTITY_PACKAGE = BASE_PACKAGE + ".*.entity";
-
-    String LOCAL_DATE_TIME_PATTERN = "yyyy-MM-dd HH:mm:ss";
-    String LOCAL_DATE_PATTERN = "yyyy-MM-dd";
+    public static final String PROJECT_NAME = "Quran Uz";
+    public static final String BASE_PACKAGE = "io.quran";
+    public static final String REPOSITORY_PACKAGE = BASE_PACKAGE + ".*.repository";
+    public static final String ENTITY_PACKAGE = BASE_PACKAGE + ".*.entity";
+    public static final String LOCAL_DATE_TIME_PATTERN = "yyyy-MM-dd HH:mm:ss";
+    public static final String LOCAL_DATE_PATTERN = "yyyy-MM-dd";
 }

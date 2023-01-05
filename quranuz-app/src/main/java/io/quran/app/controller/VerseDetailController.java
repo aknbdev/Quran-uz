@@ -2,6 +2,7 @@ package io.quran.app.controller;
 
 import io.quran.app.config.ApiConfig;
 import io.quran.app.service.VerseDetailService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@Tag(name = "Verse Detail APIs")
 @RequestMapping(ApiConfig.VERSE_DETAIL_API)
 public class VerseDetailController {
     private final VerseDetailService verseDetailService;

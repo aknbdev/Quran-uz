@@ -4,6 +4,7 @@ import io.quran.app.config.ApiConfig;
 import io.quran.app.payload.LanguageDto;
 import io.quran.app.service.LanguageService;
 import io.quran.core.response.ApiResult;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -12,6 +13,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
+@Tag(name = "Language APIs")
 @RequestMapping(ApiConfig.LANGUAGE_API)
 public class LanguageController {
     private final LanguageService languageService;

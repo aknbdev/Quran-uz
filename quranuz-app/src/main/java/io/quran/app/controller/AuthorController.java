@@ -1,4 +1,5 @@
 package io.quran.app.controller;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +10,7 @@ import io.quran.app.config.ApiConfig;
 import io.quran.app.service.AuthorService;
 
 @RestController
+@Tag(name = "Author APIs")
 @RequestMapping(ApiConfig.AUTHOR_API)
 public class AuthorController {
     

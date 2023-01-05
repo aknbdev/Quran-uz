@@ -10,9 +10,7 @@ spring:
     active: dev
   banner:
     location: classpath:base/banner.txt
-#  mvc:
-#    pathmatch:
-#      matching-strategy: ant_path_matcher
-#springfox:
-#  documentation:
-#    auto-startup: true
+springdoc:
+  swagger-ui:
+    doc-expansion: none
+    tagsSorter: alpha

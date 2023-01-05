@@ -12,9 +12,11 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-@SpringBootApplication(scanBasePackages = {ProjectConfig.BASE_PACKAGE})
-@EnableJpaRepositories(basePackages = {ProjectConfig.REPOSITORY_PACKAGE})
-@EntityScan(basePackages = {ProjectConfig.ENTITY_PACKAGE})
+import static io.quran.app.config.ProjectConfig.*;
+
+@SpringBootApplication(scanBasePackages = {BASE_PACKAGE})
+@EnableJpaRepositories(basePackages = {REPOSITORY_PACKAGE})
+@EntityScan(basePackages = {ENTITY_PACKAGE})
 @EnableTransactionManagement
 @EnableJpaAuditing
 @EnableAsync
