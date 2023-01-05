@@ -19,55 +19,49 @@
     </properties>
 
     <modules>
-        <module>app</module>
-        <module>db</module>
+        <module>quranuz-app</module>
+        <module>quranuz-db</module>
+        <module>quranuz-core</module>
     </modules>
 
     <dependencies>
-
-<!--        Data Jpa        -->
+        <!--        Data Jpa        -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
-
-<!--        Spring web        -->
+        <!--        Spring web        -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-
-<!--        Spring devtools        -->
+        <!--        Spring devtools        -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <scope>runtime</scope>
             <optional>true</optional>
         </dependency>
-
-<!--        Postgresql        -->
+        <!--        Postgresql        -->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>42.5.1</version>
         </dependency>
-
-<!--        Lombok        -->
+        <!--        Lombok        -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
             <version>1.18.24</version>
         </dependency>
-
-<!--        Spring test        -->
+        <!--        Spring test        -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-
-<!--        Data mapstruct        -->
+        <!--        Data mapstruct        -->
         <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct</artifactId>
@@ -78,14 +72,12 @@
             <artifactId>mapstruct-processor</artifactId>
             <version>1.5.3.Final</version>
         </dependency>
-
-<!--        Spring validation        -->
+        <!--        Spring validation        -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
-
-<!--        Swagger ui        -->
+        <!--        Swagger ui        -->
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>

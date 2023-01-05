@@ -1,1 +1,0 @@
-INSERT INTO verses (juz_number, order_number, page_number, surah_id, verse_key, created_at, deleted, arabic) VALUES
