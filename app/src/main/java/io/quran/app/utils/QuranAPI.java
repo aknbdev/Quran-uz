@@ -55,12 +55,12 @@ public class QuranAPI {
         System.out.println("Hello !!!");
         Juz juz = new Juz();
 
-        juz.setJuzNumber(22); // @Todo Juz Order Number o'zgaradi
-        juz.setSurahOrderNumber(36); // @Todo Surah Order Number o'zgaradi
-        juz.setVersesOrderNumber("1-27"); // @Todo Verses Order Number o'zgaradi
-        juz.setVersesCount(27); // @Todo Verses Count o'zgaradi
+        juz.setJuzNumber(30); // @Todo Juz Order Number o'zgaradi
+        juz.setSurahOrderNumber(114); // @Todo Surah Order Number o'zgaradi
+        juz.setVersesOrderNumber("1-6"); // @Todo Verses Order Number o'zgaradi
+        juz.setVersesCount(6); // @Todo Verses Count o'zgaradi
 
-        juzService.saveJuz(juz);
+//        juzService.saveJuz(juz);
     }
 
 }
