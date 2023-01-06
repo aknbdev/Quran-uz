@@ -1,0 +1,16 @@
+server:
+  port: 8080
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+spring:
+  profiles:
+    active: dev
+  banner:
+    location: classpath:base/banner.txt
+springdoc:
+  swagger-ui:
+    doc-expansion: none
+    tagsSorter: alpha
