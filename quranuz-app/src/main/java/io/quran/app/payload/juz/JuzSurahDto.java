@@ -13,5 +13,5 @@ public class JuzSurahDto {
     private String arabicName;
     private String surahName;
     private Integer surahOrderNumber;
-//    private Integer verseCount;
+    private Integer verseCount;
 }

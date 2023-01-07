@@ -68,6 +68,7 @@ public class JuzServiceImpl implements JuzService {
         dto.setStartOrderNumber(Integer.valueOf(arr[0]));
         dto.setEndOrderNumber(Integer.valueOf(arr[1]));
         dto.setSurahOrderNumber(surah.getOrderNumber());
+        dto.setVerseCount(surah.getVerseCount());
         return dto;
     }
 }
