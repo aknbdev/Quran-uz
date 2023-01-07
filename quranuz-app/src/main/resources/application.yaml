@@ -7,7 +7,7 @@ server:
       force: true
 spring:
   profiles:
-    active: dev
+    active: prod
   banner:
     location: classpath:base/banner.txt
 springdoc:
