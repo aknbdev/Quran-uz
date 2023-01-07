@@ -11,10 +11,9 @@ import java.sql.Timestamp;
 @Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class LanguageDto {
-
+    private Integer id;
     @NotBlank(message = "Language name is mandatory!")
     private String name;
-
     private Timestamp createdAt;
     private Timestamp updatedAt;
     private Boolean deleted;
