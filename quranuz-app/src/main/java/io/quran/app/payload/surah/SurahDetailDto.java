@@ -15,6 +15,4 @@ public class SurahDetailDto extends BaseDto {
     private Integer languageId;
     private LocationDto location;
     private Integer locationId;
-    private SeparatorTextDto separatorText;
-    private Integer separatorTextId;
 }

@@ -7,8 +7,11 @@ import lombok.Setter;
 @Getter
 @Setter
 public class JuzSurahDto {
-    private Integer versesCount;
+    private Integer surahId;
     private Integer startOrderNumber;
     private Integer endOrderNumber;
-    private SurahWithName surahWithName;
+    private String arabicName;
+    private String surahName;
+    private Integer surahOrderNumber;
+//    private Integer verseCount;
 }

@@ -31,6 +31,6 @@ public class AppApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        quranAPI.saveJuz();
+//        quranAPI.saveJuz();
     }
 }

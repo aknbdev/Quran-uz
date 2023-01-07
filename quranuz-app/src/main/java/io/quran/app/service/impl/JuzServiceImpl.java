@@ -37,13 +37,10 @@ public class JuzServiceImpl implements JuzService {
         surahs = surahDetailService.getSurahsForApi(languageId);
 
         juzs.forEach(juz -> {
-            JuzSurahDto dto = new JuzSurahDto();
-            dto.setSurahWithName(surahs.get(juz.getSurahOrderNumber() - 1));
-
-            String[] arr = juz.getVersesOrderNumber().split("-");
-
-            dto.setStartOrderNumber(Integer.valueOf(arr[0]));
-            dto.setEndOrderNumber(Integer.valueOf(arr[1]));
+            SurahWithName surah = surahs.get(juz.getSurahOrderNumber() - 1);
+            JuzSurahDto dto = surahToJuzDto(
+                    surah,
+                    juz.getVersesOrderNumber().split("-"));
 
             if(!juzSurahsDto.containsKey(juz.getJuzNumber())){
                 juzSurahsDto.put(juz.getJuzNumber(), new JuzDto(juz.getJuzNumber(), new ArrayList<>()));
@@ -54,5 +51,18 @@ public class JuzServiceImpl implements JuzService {
         });
 
         return ApiResult.successResponse(juzSurahsDto.values());
+    }
+
+    // ======= SECONDARY FUNCTIONS =======
+
+    private JuzSurahDto surahToJuzDto(SurahWithName surah, String[] arr){
+        JuzSurahDto dto = new JuzSurahDto();
+        dto.setSurahId(surah.getSurahId());
+        dto.setArabicName(surah.getArabicName());
+        dto.setSurahName(surah.getName());
+        dto.setStartOrderNumber(Integer.valueOf(arr[0]));
+        dto.setEndOrderNumber(Integer.valueOf(arr[1]));
+        dto.setSurahOrderNumber(surah.getOrderNumber());
+        return dto;
     }
 }
