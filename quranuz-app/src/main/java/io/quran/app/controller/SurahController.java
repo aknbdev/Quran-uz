@@ -1,13 +1,15 @@
 package io.quran.app.controller;
 
+import io.quran.app.payload.filter.FilterDto;
 import io.quran.app.payload.surah.SurahDetailDto;
+import io.quran.app.payload.surah.SurahWithName;
 import io.quran.app.service.SurahDetailService;
 import io.quran.core.response.ApiResult;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
 import static io.quran.app.config.ApiConfig.SURAH_API;
 
 @RestController
@@ -34,4 +36,10 @@ public class SurahController {
         return result;
     }
 
+    @PostMapping("/{languageId}/filter")
+    public ApiResult<List<SurahWithName>> getSurahsWithFilter(@RequestBody FilterDto filterDto,
+                                                              @PathVariable Integer languageId){
+        ApiResult<List<SurahWithName>> result = surahDetailService.getAllSurahsWithFilter(filterDto, languageId);
+        return result;
+    }
 }
