@@ -6,5 +6,4 @@ public interface RestConstants {
     int CONFIRMATION = 3012;
     int USER_NOT_ACTIVE = 3013;
     int JWT_TOKEN_INVALID = 3014;
-
 }

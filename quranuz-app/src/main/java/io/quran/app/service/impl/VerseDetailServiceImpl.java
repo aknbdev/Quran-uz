@@ -1,6 +1,5 @@
 package io.quran.app.service.impl;
 
-import io.quran.app.payload.verse.VerseDetailSaveDto;
 import io.quran.app.service.VerseDetailService;
 import io.quran.core.exception.BadRequestException;
 import io.quran.db.entity.verse.VerseDetail;
@@ -16,30 +15,8 @@ public class VerseDetailServiceImpl implements VerseDetailService {
         this.verseDetailRepository = verseDetailRepository;
     }
 
-
-    @Override
-    public VerseDetailSaveDto getOneBySurahIdVerseId(
-            Integer surahId,
-            Integer verseId,
-            String lang) {
-
-        return null;
-    }
-
-    @Override
-    public List<VerseDetailSaveDto> getVerseDetailBySurahId(Integer surahId, String lang) {
-
-        return null;
-    }
-
-    @Override
-    public List<VerseDetailSaveDto> getAllVerseDetail(String lang) {
-
-        return null;
-    }
-
-    public List<VerseDetail> getVerseDetails(List<Integer> verseIds) {
-        List<VerseDetail> allByVerseIdIn = verseDetailRepository.findAllByVerseIdIn(verseIds);
+    public List<VerseDetail> getVerseDetails(List<Integer> verseIds, Integer authorId, Integer langId) {
+        List<VerseDetail> allByVerseIdIn = verseDetailRepository.findAllByVerseIdInAndAuthorId(verseIds, authorId, langId);
         if (allByVerseIdIn.isEmpty()) {
             throw new BadRequestException("went.wrong");
         }

@@ -11,6 +11,6 @@ public interface VerseMapper {
 
     Verse toVerse(VerseSaveDto source);
 
-    @Mapping(target = "id", source = "verseDetail.id")
+    @Mapping(target = "id", source = "source.id")
     VerseDto toVerseDto(Verse source, VerseDetail verseDetail);
 }

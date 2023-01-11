@@ -17,8 +17,9 @@ import org.springframework.context.annotation.Configuration;
         contact = @Contact(name = "idea one", url = "idea-one.is-a.dev"),
         license = @License(name = "Apache 2.0", url = "https://www.apache.org/licenses/LICENSE-2.0")),
         servers = {
-                @Server(url = "http://localhost:8080", description = "Local server"),
-                @Server(url = "https://quranuz-backend.up.railway.app")})
+                @Server(url = "http://localhost:8080", description = "Local Server"),
+                @Server(url = "http://213.230.69.2:8080", description = "Public Local Server"),
+                @Server(url = "https://quranuz-backend.up.railway.app", description = "Railway Server")})
 @SecurityScheme(scheme = "bearer",
         name = ProjectConfig.PROJECT_NAME,
         type = SecuritySchemeType.HTTP,

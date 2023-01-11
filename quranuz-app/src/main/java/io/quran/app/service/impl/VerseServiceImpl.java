@@ -1,17 +1,23 @@
 package io.quran.app.service.impl;
+
 import io.quran.app.mapper.verse.VerseMapper;
 import io.quran.app.payload.verse.VerseDto;
-import io.quran.app.payload.verse.VerseJuzRequest;
+import io.quran.app.payload.verse.VerseBeginEndReq;
+import io.quran.app.payload.verse.VerseSurahReq;
 import io.quran.app.payload.verse.VersesAfterReq;
 import io.quran.app.service.VerseDetailService;
 import io.quran.app.service.VerseService;
+import io.quran.core.exception.RestException;
 import io.quran.db.entity.verse.Verse;
 import io.quran.db.entity.verse.VerseDetail;
 import io.quran.db.repository.verse.VerseRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import java.util.ArrayList;
+
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Service
 public class VerseServiceImpl implements VerseService {
@@ -26,41 +32,41 @@ public class VerseServiceImpl implements VerseService {
     }
 
     @Override
-    public List<VerseDto> getAllBySurahId(Integer surahId, Integer langId) {
+    public List<VerseDto> getAllBySurahId(VerseSurahReq verseSurahReq) {
 
-        List<Verse> verses = verseRepository.findAllBySurahId(surahId);
-        return listChangerToDtoList(verses, verseDetailService.getVerseDetails(getIds(verses)));
+        List<Verse> verses = verseRepository.findAllBySurahId(verseSurahReq.getSurahId());
+        return listChangerToDtoList(verses, verseDetailService.getVerseDetails(getIds(verses), verseSurahReq.getAuthorId(), verseSurahReq.getLangId()));
     }
 
     @Override
-    public List<VerseDto> findAllByJuzRequest(VerseJuzRequest req) {
+    public List<VerseDto> findAllByJuzRequest(VerseBeginEndReq req) {
 
         List<Verse> verses = verseRepository.findBySurahIdAndOrderNumberRange(req.getSurahId(), req.getBegin(), req.getEnd());
-        return listChangerToDtoList(verses, verseDetailService.getVerseDetails(getIds(verses)));
+        return listChangerToDtoList(verses, verseDetailService.getVerseDetails(getIds(verses), req.getAuthorId(), req.getLangId()));
     }
 
     @Override
     public List<VerseDto> getVersesAfter(VersesAfterReq req) {
 
         List<Verse> verses = verseRepository.findBySurahIdAndOrderNumberGreaterThan(req.getSurahId(), req.getIdAfter());
-        return listChangerToDtoList(verses, verseDetailService.getVerseDetails(getIds(verses)));
+        return listChangerToDtoList(verses, verseDetailService.getVerseDetails(getIds(verses), req.getAuthorId(), req.getLangId()));
     }
 
     private List<VerseDto> listChangerToDtoList(List<Verse> verses, List<VerseDetail> verseDetails) {
-
         List<VerseDto> verseDtoList = new LinkedList<>();
-        for (int i = 0; i < verses.size(); i++) {
-            verseDtoList.add(verseMapper.toVerseDto(verses.get(i), verseDetails.get(i)));
+        if (!verses.isEmpty() && verses.size() == verseDetails.size()) {
+            IntStream.range(0, verses.size())
+                    .mapToObj(i -> verseMapper.toVerseDto(verses.get(i), verseDetails.get(i)))
+                    .forEach(verseDtoList::add);
+        } else {
+            throw RestException.restThrow("Verse not found", HttpStatus.NOT_FOUND);
         }
         return verseDtoList;
     }
 
-    public <T extends Verse> List<Integer> getIds(List<T> verse) {
-        List<Integer> ids = new ArrayList<>();
-        for (T v : verse) {
-            ids.add(v.getId());
-        }
-        return ids;
+
+    public <T extends Verse> List<Integer> getIds(List<T> verses) {
+        return verses.stream().map(Verse::getId).collect(Collectors.toList());
     }
 }/* |->  DEPRECATED THINGS   <-|
 

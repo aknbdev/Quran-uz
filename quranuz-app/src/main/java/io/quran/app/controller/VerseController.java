@@ -1,7 +1,8 @@
 package io.quran.app.controller;
 
 import io.quran.app.config.ApiConfig;
-import io.quran.app.payload.verse.VerseJuzRequest;
+import io.quran.app.payload.verse.VerseBeginEndReq;
+import io.quran.app.payload.verse.VerseSurahReq;
 import io.quran.app.payload.verse.VersesAfterReq;
 import io.quran.app.service.VerseService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -24,20 +25,22 @@ public class VerseController {
     }
 
     @GetMapping("/by-surah-lang")
-    public ResponseEntity<?> getAllBySurahId(@RequestParam("surah-id") Integer surahId,
-                                             @RequestParam("lang-id") Integer langId) {
-        LOG.info("Rest request to get all verses surahId: {} langId: {}", surahId, langId);
-        return ResponseEntity.ok(verseService.getAllBySurahId(surahId, langId));
+    public ResponseEntity<?> getAllBySurahId(VerseSurahReq verseSurahReq) {
+
+        LOG.info("Rest request to get all verses surahId: {} langId: {}", verseSurahReq.getSurahId(), verseSurahReq.getLangId());
+        return ResponseEntity.ok(verseService.getAllBySurahId(verseSurahReq));
     }
 
-    @PostMapping("/begin-end-request")
-    public ResponseEntity<?> getAllByJuzRequest(@Valid @RequestBody VerseJuzRequest verseJuzRequest) {
+    @GetMapping("/begin-end-request")
+    public ResponseEntity<?> getAllByJuzRequest(@Valid VerseBeginEndReq verseJuzRequest) {
+
         LOG.info("Rest request to get all verses by: {}", verseJuzRequest);
         return ResponseEntity.ok(verseService.findAllByJuzRequest(verseJuzRequest));
     }
 
-    @PostMapping("/by-after")
-    public ResponseEntity<?> getAllAfter(@Valid @RequestBody VersesAfterReq req) {
+    @GetMapping("/by-after")
+    public ResponseEntity<?> getAllAfter(@Valid VersesAfterReq req) {
+
         LOG.info("Rest request to get all surah id: {} verses after id: {}", req.getSurahId(), req.getIdAfter());
         return ResponseEntity.ok(verseService.getVersesAfter(req));
     }

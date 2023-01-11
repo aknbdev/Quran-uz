@@ -1,5 +1,6 @@
 package io.quran.db.entity.verse;
 
+import io.quran.db.entity.Author;
 import io.quran.db.entity.Language;
 import io.quran.db.entity.template.AbsEntity;
 import lombok.Getter;
@@ -39,4 +40,11 @@ public class VerseDetail extends AbsEntity {
 
     @Column(name = "language_id")
     private Integer languageId;
+
+    @ManyToOne(fetch = LAZY)
+    @JoinColumn(name = "author_id", insertable = false, updatable = false)
+    private Author author;
+
+    @Column(name = "author_id")
+    private Integer authorId;
 }

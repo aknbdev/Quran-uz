@@ -1,4 +1,7 @@
 package io.quran.app.controller;
+import io.quran.app.payload.author.AuthorDto;
+import io.quran.core.enums.AuthorType;
+import io.quran.db.repository.AuthorRepository;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import io.quran.app.config.ApiConfig;
 import io.quran.app.service.AuthorService;
+
+import java.util.List;
 
 @RestController
 @Tag(name = "Author APIs")
@@ -20,16 +25,9 @@ public class AuthorController {
     public AuthorController(AuthorService authorService) {
         this.authorService = authorService;
     }
-
-    @GetMapping("/interpreters")
-    public ResponseEntity<?> getInterpriters() {
-        LOG.info("Rest request in AuthorController get interpreters");
-        return ResponseEntity.ok(authorService.findAllInterpreters());
-    }
-    
-    @GetMapping("/reciters")
-    public ResponseEntity<?> getReciters() {
-        LOG.info("Rest request in AuthorController get reciters");
-        return ResponseEntity.ok(authorService.findAllReciters());
+    @GetMapping
+    public ResponseEntity<List<AuthorDto>> authors(AuthorType authorType) {
+        LOG.info("Rest request in Author get: {}", authorType);
+        return ResponseEntity.ok(authorService.listByAuthorType(authorType));
     }
 }

@@ -3,10 +3,13 @@ package io.quran.app.payload.verse;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.validation.constraints.NotNull;
+
 @Getter
 @Setter
 public class VerseDto {
 
+    @NotNull(message = "id.required")
     private Integer id;
     private String verseKey;
     private String arabic;

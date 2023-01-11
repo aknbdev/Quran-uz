@@ -5,9 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class VersesAfterReq {
+public class VersesAfterReq extends VerseSurahReq {
 
-    private Integer surahId;
     private Integer idAfter;
-    private Integer langId;
 }
