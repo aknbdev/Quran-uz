@@ -5,7 +5,9 @@ import io.quran.db.entity.verse.Verse;
 import io.quran.db.entity.verse.VerseDetail;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.springframework.stereotype.Component;
 
+@Component
 @Mapper(componentModel = "spring")
 public interface VerseMapper {
 

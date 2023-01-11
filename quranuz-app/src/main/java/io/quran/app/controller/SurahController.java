@@ -36,8 +36,8 @@ public class SurahController {
         return result;
     }
 
-    @PostMapping("/{languageId}/filter")
-    public ApiResult<List<SurahWithName>> getSurahsWithFilter(@RequestBody FilterDto filterDto,
+    @GetMapping("/{languageId}/filter")
+    public ApiResult<List<SurahWithName>> getSurahsWithFilter(FilterDto filterDto,
                                                               @PathVariable Integer languageId){
         ApiResult<List<SurahWithName>> result = surahDetailService.getAllSurahsWithFilter(filterDto, languageId);
         return result;

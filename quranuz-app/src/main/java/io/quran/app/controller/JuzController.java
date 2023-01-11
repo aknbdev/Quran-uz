@@ -19,8 +19,8 @@ public class JuzController {
 
     private final JuzService juzService;
 
-    @PostMapping("/{languageId}")
-    public ApiResult<Collection<JuzDto>> getAllJuz(@RequestBody FilterDto filterDto,
+    @GetMapping("/{languageId}")
+    public ApiResult<Collection<JuzDto>> getAllJuz(FilterDto filterDto,
                                                    @PathVariable Integer languageId){
         ApiResult<Collection<JuzDto>> result = juzService.getAllJuz(filterDto,
                 languageId);

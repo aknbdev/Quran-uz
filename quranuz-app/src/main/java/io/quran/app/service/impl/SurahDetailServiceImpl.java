@@ -44,16 +44,12 @@ public class SurahDetailServiceImpl implements SurahDetailService {
 
     public List<SurahWithName> getSurahsForApi(Integer languageId) {
 
-//        if(filterRequest.getSortDirection() == null)
-//            filterRequest.setSortDirection("ASC");
-
         List<SurahDetail> surahDetailList = getAllEntity(languageId);
 
         if (surahDetailList == null || surahDetailList.isEmpty())
             return Collections.emptyList();
 
         return extractSurah(surahDetailList);
-
     }
 
     public ApiResult<List<SurahWithName>> getAllSurahsWithFilter(FilterDto filter, Integer languageId) {
@@ -100,8 +96,6 @@ public class SurahDetailServiceImpl implements SurahDetailService {
     }
 
     private List<SurahDetail> getAllEntity(Integer languageId) {
-//        Integer languageId = languageService.getLanguageIdByCode(languageCode);
-//        log.info("Language id => {}", languageId);
         List<SurahDetail> surahDetailList = surahDetailRepository.findAllByLanguageIdOrderByIdAsc(languageId);
         return !surahDetailList.isEmpty() ? surahDetailList : null;
     }
