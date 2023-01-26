@@ -10,7 +10,8 @@ import javax.validation.constraints.NotNull;
 public class VerseDto {
 
     @NotNull(message = "id.required")
-    private Integer id;
+    private Integer verseId;
+    private Integer verseDetailId;
     private String verseKey;
     private String arabic;
     private Integer orderNumber;
