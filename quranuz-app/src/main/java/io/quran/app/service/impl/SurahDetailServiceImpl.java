@@ -12,13 +12,11 @@ import io.quran.db.entity.SurahDetail;
 import io.quran.db.repository.SurahDetailRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.logging.log4j.util.Strings;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import javax.persistence.criteria.Predicate;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -74,7 +72,7 @@ public class SurahDetailServiceImpl implements SurahDetailService {
             predicateList.add(
                     criteriaBuilder.like(criteriaBuilder.lower(
                             root.get("surahName")
-                    ), "%" + filter.getValue() + "%")
+                    ), "%" + filter.getValue().toLowerCase() + "%")
             );
 
             return criteriaBuilder.and(predicateList.toArray(new Predicate[0]));
