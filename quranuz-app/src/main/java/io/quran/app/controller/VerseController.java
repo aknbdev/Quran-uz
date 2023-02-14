@@ -26,24 +26,33 @@ public class VerseController {
         this.verseDetailService = verseDetailService;
     }
 
-    @GetMapping("/by-surah-lang")
+    @GetMapping("/list-by/surah-lang-author")
     public ResponseEntity<?> getAllBySurahId(VerseSurahReq verseSurahReq) {
 
-        LOG.info("Rest request to get all verses surahId: {} langId: {}", verseSurahReq.getSurahId(), verseSurahReq.getLangId());
+        LOG.info("Rest request to get all verses surahId: {} langId: {} authorId: {}",
+                verseSurahReq.getSurahId(), verseSurahReq.getLangId(), verseSurahReq.getAuthorId());
         return ResponseEntity.ok(verseDetailService.getAllBySurahId(verseSurahReq));
     }
 
-    @GetMapping("/begin-end-request")
+    @GetMapping("/list-by/begin-end")
     public ResponseEntity<?> getAllByJuzRequest(@Valid VerseBeginEndReq verseJuzRequest) {
 
         LOG.info("Rest request to get all verses by: {}", verseJuzRequest);
         return ResponseEntity.ok(verseDetailService.findAllByJuzRequest(verseJuzRequest));
     }
 
-    @GetMapping("/by-after")
+    @GetMapping("/list-by/after")
     public ResponseEntity<?> getAllAfter(@Valid VersesAfterReq req) {
 
         LOG.info("Rest request to get all surah id: {} verses after id: {}", req.getSurahId(), req.getIdAfter());
         return ResponseEntity.ok(verseDetailService.getVersesAfter(req));
+    }
+
+    @GetMapping("/list-as/page")
+    public ResponseEntity<?> getAllAsPageable(@Valid VerseSurahReq req) {
+
+        LOG.info("Rest request to get all verses as a Pageable surahId: {} langId: {} authorId: {}",
+                req.getSurahId(), req.getLangId(), req.getAuthorId());
+        return ResponseEntity.ok(verseDetailService.getAllAsPageable(req));
     }
 }

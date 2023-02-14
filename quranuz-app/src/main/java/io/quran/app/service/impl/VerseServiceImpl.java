@@ -7,8 +7,8 @@ import io.quran.app.payload.verse.VerseSurahReq;
 import io.quran.app.payload.verse.VersesAfterReq;
 import io.quran.app.service.VerseDetailService;
 import io.quran.app.service.VerseService;
-import io.quran.db.entity.verse.Verse;
-import io.quran.db.entity.verse.VerseDetail;
+import io.quran.db.entity.Verse;
+import io.quran.db.entity.VerseDetail;
 import io.quran.db.repository.verse.VerseRepository;
 import org.springframework.stereotype.Service;
 

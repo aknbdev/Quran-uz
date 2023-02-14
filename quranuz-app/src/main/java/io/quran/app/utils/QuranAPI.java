@@ -9,7 +9,7 @@ import io.quran.app.service.SurahDetailService;
 import io.quran.app.service.SurahService;
 import io.quran.db.entity.Juz;
 import io.quran.db.entity.Surah;
-import io.quran.db.entity.verse.Verse;
+import io.quran.db.entity.Verse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;

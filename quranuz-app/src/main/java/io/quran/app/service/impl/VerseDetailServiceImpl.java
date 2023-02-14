@@ -7,8 +7,9 @@ import io.quran.app.payload.verse.VerseSurahReq;
 import io.quran.app.payload.verse.VersesAfterReq;
 import io.quran.app.service.VerseDetailService;
 import io.quran.core.exception.BadRequestException;
-import io.quran.db.entity.verse.VerseDetail;
+import io.quran.db.entity.VerseDetail;
 import io.quran.db.repository.verse.VerseDetailRepository;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -43,6 +44,16 @@ public class VerseDetailServiceImpl implements VerseDetailService {
                 ).stream()
                 .map(verseMapper::toVerseDto)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Page<VerseDto> getAllAsPageable(VerseSurahReq req) {
+        Page<VerseDetail> verseDetails = verseDetailRepository.findAllByVerseSurahIdAndAndAuthorIdAndLanguageId(
+                req.getSurahId(), req.getAuthorId(), req.getLangId(),
+//                PageRequest.of()
+                null
+        );
+        return null;
     }
 
     @Override

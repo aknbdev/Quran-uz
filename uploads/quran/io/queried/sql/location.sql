@@ -1,5 +1,5 @@
-INSERT INTO location(created_at, deleted, updated_at, name) VALUES
-(now(), false, now(), 'Makkiy'),
-(now(), false, now(), 'Madaniy'),
-(now(), false, now(), 'маккий'),
-(now(), false, now(), 'маданий');
+insert into location (id, created_at, deleted, updated_at, name)
+values  (1, now(), false, now(), 'Makkiy'),
+        (2, now(), false, now(), 'Madaniy'),
+        (3, now(), false, now(), 'маккий'),
+        (4, now(), false, now(), 'маданий');

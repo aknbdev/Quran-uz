@@ -1,6 +1,6 @@
 package io.quran.db.repository.verse;
 
-import io.quran.db.entity.verse.Verse;
+import io.quran.db.entity.Verse;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

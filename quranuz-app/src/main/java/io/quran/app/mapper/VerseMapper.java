@@ -1,8 +1,8 @@
 package io.quran.app.mapper;
 import io.quran.app.payload.verse.VerseDto;
 import io.quran.app.payload.verse.VerseSaveDto;
-import io.quran.db.entity.verse.Verse;
-import io.quran.db.entity.verse.VerseDetail;
+import io.quran.db.entity.Verse;
+import io.quran.db.entity.VerseDetail;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

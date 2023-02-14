@@ -1,6 +1,6 @@
-package io.quran.db.entity.verse;
+package io.quran.db.entity;
 
-import io.quran.db.entity.Surah;
+import io.quran.core.enums.ArabicTextType;
 import io.quran.db.entity.template.AbsEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,6 +23,10 @@ public class Verse extends AbsEntity {
 
     @Column(name = "arabic", columnDefinition = "text")
     private String arabic;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "arabic_text_type")
+    private ArabicTextType arabicTextType;
 
     @Column(name = "verse_key")
     private String verseKey;

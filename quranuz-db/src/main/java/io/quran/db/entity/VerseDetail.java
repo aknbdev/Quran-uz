@@ -1,7 +1,5 @@
-package io.quran.db.entity.verse;
+package io.quran.db.entity;
 
-import io.quran.db.entity.Author;
-import io.quran.db.entity.Language;
 import io.quran.db.entity.template.AbsEntity;
 import lombok.Getter;
 import lombok.Setter;
